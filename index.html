@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Psychic Game</title>
+</head>
+<body>
+  <h1>Psychic game</h1>
+  <h2>Guess which letter I am thinking of</h2>
+  <script type="text/javascript">
+    var computerChoices = genCharArray('a', 'z')
+    var wins = 0;
+    var losses = 0;
+    var wordLetters = [];
+    var guessedLetters = [];
+
+    function genCharArray(charA, charZ) {
+      var a = [],
+        i = charA.charCodeAt(0),
+        j = charZ.charCodeAt(0);
+      for (; i <= j; ++i) {
+        a.push(String.fromCharCode(i));
+      }
+      return a;
+    }
+    document.onkeyup = function(event) {
+      var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+      console.log("User Guessed: " + userGuess);
+      var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+      console.log("Computer Guessed: " + computerGuess);
+      if(userGuess == computerGuess){
+        alert('You win!');
+      } else {
+        alert('You lose!')
+      }
+
+      var html = "<p>Gues a letter to begin</p>" +
+    "<p>wins: " + 
+    wins + 
+    "</p>" +
+    "<p>losses: " + 
+    losses + 
+    "</p>" +
+    "<p>ties: " + 
+    ties + 
+    "</p>";
+    document.querySelector('#game').innerHTML = html;
+    }
+    
+
+  </script>
+</body>
+</html>
